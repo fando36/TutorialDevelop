@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>User Update</title>
+    <link rel="stylesheet" th:href="@{/css/user/update.css}">
+</head>
+<body>
+    <h1>User情報管理システム</h1>
+    <h2>User更新</h2>
+
+
+    <form method="post" th:action="@{/user/update/{id}/(id=${user.id})}" th:object="${user}">
+        <!-- ID (非表示) -->
+        <label for="id">ID</label>
+        <input type="hidden" id="id" name="id" th:value="*{id}">
+        <br>
+
+        <!-- 名前 -->
+        <label for="name">名前</label>
+        <input type="text" th:field="*{name}">
+        <span style="color: red;" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+        <br>
+
+        <!-- 性別 -->
+        <label for="gender">性別</label>
+        <select th:field="*{gender}">
+            <option value="" th:text="'選択してください'"></option>
+            <option th:each="item : ${T(com.techacademy.entity.User.Gender).values()}" th:value="${item}" th:text="${item}"></option>
+        </select>
+        <span style="color: red;" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></span>
+        <br>
+
+        <!-- 年齢 -->
+        <label for="age">年齢</label>
+        <input type="text" th:field="*{age}">
+        <span style="color: red;" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></span>
+        <br>
+
+        <!-- メールアドレス -->
+        <label for="email">メールアドレス</label>
+        <input type="text" th:field="*{email}">
+        <span style="color: red;" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+        <br>
+
+        <!-- ボタン -->
+        <input type="submit" value="更新実行">
+        <a th:href="@{/user/list}">更新せずに一覧に戻る</a>
+    </form>
+</body>
+</html>

@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+label {
+    display: inline-block;
+    width: 8em;
+    line-height: 150%;
+}
+
+p {
+    margin: 0;
+    font-size: 0.9em;
+    color: red;
+}
